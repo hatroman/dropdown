@@ -101,7 +101,6 @@ body {
 .dropdown-list .dropdown-item:hover{
     background-color: #DBE9FB;
     color: #333;
-
     cursor: default;
 }
 
@@ -109,6 +108,6 @@ body {
 }
 
 .dropdown-item.dropdown-item__active, .dropdown-item.dropdown-item__active:hover{
-    background-color: #3a87ad;
+    background-color: #666;
     color: #fff;
 }

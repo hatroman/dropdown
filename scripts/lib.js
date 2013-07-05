@@ -1,3 +1,5 @@
+//TODO методы можно расширять для совместимости с более старыми IE
+
 function getCoords(el) {
 	'use strict';
 	var box = el.getBoundingClientRect();
@@ -10,7 +12,6 @@ function getCoords(el) {
 	var left = box.left + scrollLeft;
 
 	var style = getComputedStyle(el, '');
-	console.log(el)
 	var height = parseInt(style.height, 10) + parseInt(style.paddingTop, 10) + parseInt(style.paddingBottom, 10);
 	var width = parseInt(style.width, 10) + parseInt(style.paddingLeft, 10) + parseInt(style.paddingRight, 10);
 

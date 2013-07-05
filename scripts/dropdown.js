@@ -12,17 +12,11 @@
 		var opened = false;
 		var _this = this;
 
-
-//		preventSelection(btn, function (elem) {
-//			return hasClass(elem, 'btn') || hasClass(elem, 'dropdown-item');
-//		});
-//
 		preventSelection(dropdownList, function (elem) {
 			return hasClass(elem, 'btn') || hasClass(elem, 'dropdown-item');
 		});
 //
 		var coords = getCoords(btn);
-		console.log(coords);
 		Events.on(btn, 'click',
 			function (e) {
 				opened ? _this.close() : _this.open();
@@ -35,10 +29,10 @@
 			},
 			function (e) {
 				//TODO сделать кастомные события и триггерить тут 'change', вместо вывода в консоль
-
 				window.console && console.log('change event, new value: \'' + getText(e.target) + '\'');
 
-				removeClass(dropdownList.querySelector('.dropdown-item__active'), 'dropdown-item__active');
+				var active = dropdownList.querySelector('.dropdown-item__active');
+				active && removeClass(active, 'dropdown-item__active');
 				addClass(e.target, 'dropdown-item__active');
 
 				e.dropdownHandled = true;
@@ -47,14 +41,12 @@
 		);
 
 		//TODO global static event
-		Dropdown.attachCloseOnDoc();
+		Dropdown.attachClickOnDoc();
 
 		this.open = function () {
 			if (Dropdown.openedDropdown) {
 				Dropdown.openedDropdown.close();
 			}
-
-
 			addClass(btn, 'dropdown__opened');
 
 			document.body.appendChild(dropdownList);
@@ -80,7 +72,7 @@
 		};
 	}
 
-	Dropdown.attachCloseOnDoc = function () {
+	Dropdown.attachClickOnDoc = function () {
 		if (this.inited) {
 			return;
 		}
@@ -97,10 +89,6 @@
 
 		this.inited = true;
 	};
-
-	forEach(document.querySelectorAll('.dropdown'), function(el, i) {
-		var d = new Dropdown(el);
-	});
 
 }(window));
 

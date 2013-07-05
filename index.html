@@ -36,11 +36,21 @@
     много текста много текстамного текстамного текстамного текстамного текстамного текстамного текстамного текстамного текста
     много текста много текстамного текстамного текстамного текстамного текстамного текстамного текстамного текстамного текста</div>
 	</body>
-	<!--<script type='text/html' id="list-template">
-	</script>
--->
+
+    <div class="btn dropdown">И еще <span class="caret"></span>
+        <ul class="dropdown-list">
+            <li class="dropdown-item">iOS</li>
+            <li class="dropdown-item">Android</li>
+            <li class="dropdown-item">Windows 8</li>
+        </ul>
+    </div>
 
 
 	<script type='text/javascript' src='scripts/lib.js'></script>
-	<script type='text/javascript' src='scripts/script.js'></script>
+	<script type='text/javascript' src='scripts/dropdown.js'></script>
+	<script type='text/javascript'>
+        forEach(document.querySelectorAll('.dropdown'), function(el, i) {
+            var d = new Dropdown(el);
+        });
+	</script>
 </html>
