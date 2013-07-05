@@ -10,6 +10,7 @@ function getCoords(el) {
 	var left = box.left + scrollLeft;
 
 	var style = getComputedStyle(el, '');
+	console.log(el)
 	var height = parseInt(style.height, 10) + parseInt(style.paddingTop, 10) + parseInt(style.paddingBottom, 10);
 	var width = parseInt(style.width, 10) + parseInt(style.paddingLeft, 10) + parseInt(style.paddingRight, 10);
 
@@ -32,20 +33,24 @@ function forEach(arr, fn) {
 }
 
 function hasClass(el, cls) {
-	return el.classList.contains(cls);
+	return el.nodeType == 1 && el.classList.contains(cls);
 }
 
 function addClass(el, cls) {
-	if (!el.classList.contains(cls)) {
+	if (el.nodeType == 1 && !el.classList.contains(cls)) {
 		el.classList.add(cls);
 	}
 }
 
 function removeClass(el, cls) {
-	if (el.classList.contains(cls)) {
+	if (el.nodeType == 1 && el.classList.contains(cls)) {
 		el.classList.remove(cls);
 	}
 
+}
+
+function getText(el) {
+	return el.innerText ? el.innerText : el.textContent;
 }
 
 var Events = {
@@ -68,7 +73,7 @@ var Events = {
 			container.addEventListener(eventName, function (e) {
 				var target = e.target;
 				do {
-					if (target.nodeType == 1 && selectorFn(target)) {
+					if (target && target.nodeType == 1 && selectorFn(target)) {
 						return fn.call(target, e);
 					}
 					target = target.parentNode;
@@ -81,10 +86,11 @@ var Events = {
 	}
 };
 
-function preventSelection(selectorFn) {
-	Events.on(document, 'mousedown selectstart', selectorFn,
+function preventSelection(elem, selectorFn) {
+	Events.on(elem, 'mousedown selectstart', selectorFn,
 		function (e) {
 			e.preventDefault();
+			return true;
 		}
 	);
 }

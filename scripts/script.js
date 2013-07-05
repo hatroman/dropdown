@@ -12,12 +12,17 @@
 		var opened = false;
 		var _this = this;
 
-		preventSelection(function (elem) {
-			return hasClass(elem, 'btn') || hasClass(elem, 'dropdown-list');
+
+//		preventSelection(btn, function (elem) {
+//			return hasClass(elem, 'btn') || hasClass(elem, 'dropdown-item');
+//		});
+//
+		preventSelection(dropdownList, function (elem) {
+			return hasClass(elem, 'btn') || hasClass(elem, 'dropdown-item');
 		});
-
+//
 		var coords = getCoords(btn);
-
+		console.log(coords);
 		Events.on(btn, 'click',
 			function (e) {
 				opened ? _this.close() : _this.open();
@@ -30,7 +35,8 @@
 			},
 			function (e) {
 				//TODO сделать кастомные события и триггерить тут 'change', вместо вывода в консоль
-				window.console && console.log('change event, new value: \'' + e.target.innerText + '\'');
+
+				window.console && console.log('change event, new value: \'' + getText(e.target) + '\'');
 
 				removeClass(dropdownList.querySelector('.dropdown-item__active'), 'dropdown-item__active');
 				addClass(e.target, 'dropdown-item__active');
@@ -53,7 +59,7 @@
 
 			document.body.appendChild(dropdownList);
 			setStyle(dropdownList, {
-				top: coords.top + coords.height + 'px',
+				top: coords.top + coords.height + 1 +  'px',
 				left: coords.left + 'px',
 				display: 'block'
 			});
@@ -88,6 +94,7 @@
 				}
 			}
 		);
+
 		this.inited = true;
 	};
 
