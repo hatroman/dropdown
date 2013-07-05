@@ -1,20 +1,3 @@
-function createElements(html) {
-	var tmp = document.createElement('div');
-	tmp.innerHTML = html;
-	return tmp.children;
-}
-
-function appendHtml(el, html) {
-	var children = createElements(html);
-
-	var result = [];
-	while (children.length > 0) {
-		result.push(el.appendChild(children[0]));
-	}
-
-	return result;
-}
-
 function getCoords(el) {
 	'use strict';
 	var box = el.getBoundingClientRect();
