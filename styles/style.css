@@ -94,16 +94,21 @@ body {
 }
 
 
-.dropdown-list li{
-    padding: 4px 12px;
+.dropdown-list .dropdown-item{
+    padding: 4px 16px;
 }
 
 .dropdown-list .dropdown-item:hover{
     background-color: #DBE9FB;
-    color: black;
+    color: #333;
+
     cursor: default;
 }
 
-.dropdown-item__active, .dropdown-item.dropdown-item__active:hover{
-    background-color: #bbb;
+.dropdown-item.dropdown-item__active{
+}
+
+.dropdown-item.dropdown-item__active, .dropdown-item.dropdown-item__active:hover{
+    background-color: #3a87ad;
+    color: #fff;
 }
