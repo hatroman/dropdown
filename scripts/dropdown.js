@@ -90,5 +90,6 @@
 		this.inited = true;
 	};
 
+	window.Dropdown = Dropdown;
 }(window));
 
